@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Головна</title>
+</head>
+<body>
+    <h1>Публікації</h1>
+    {% for article in articles %}
+        <div style="border: 1px solid #ccc; padding: 10px; margin: 10px;">
+            <h2>{{ article.title }}</h2>
+            <p>{{ article.description }}</p>
+            <p><em>{{ article.pub_date }}</em></p>
+
+            {% for image in article.images.all %}
+                <img src="{{ image.image.url }}" alt="{{ image.title }}" width="300">
+            {% endfor %}
+
+            <hr>
+        </div>
+    {% empty %}
+        <p>Немає публікацій.</p>
+    {% endfor %}
+</body>
+</html>
